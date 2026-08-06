@@ -1,0 +1,22 @@
+
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title style="font-family:'Courier New'">
+        Book Store
+    </title>
+</head>
+<body>
+    <form style="font-family:'Courier New'" method="POST" action="/books">
+        <input type="text" name="title" placeholder="Title"><br>
+        <input type="text" name="author" placeholder="Author"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h1 style="font-family:'Courier New'"> My Books </h1>
+    <ul style="font-family:'Courier New'">
+        {% for book in books %}
+            <li>{{book.title}}, by {{book.author}}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+

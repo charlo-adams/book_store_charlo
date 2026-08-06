@@ -1,0 +1,38 @@
+body {
+    background-image: linear-gradient(to bottom, rgb(248, 162, 218), rgb(149, 222, 246));
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.292);  
+}
+
+h2 {
+    color: black;
+    text-align: center;  
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+ul {
+    text-align: center;
+}
+
+.cat {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+.haha {
+    display: block;
+    margin: auto;
+    width: 30%;
+    height: 50%;
+}
