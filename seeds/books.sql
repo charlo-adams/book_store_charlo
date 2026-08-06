@@ -5,6 +5,12 @@ CREATE TABLE IF NOT EXISTS books (
   author VARCHAR(255)
 );
 
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);
+
 TRUNCATE table books;
 
 INSERT INTO books (title, author) VALUES ('The Gruffalo', 'Julia Donaldson');
