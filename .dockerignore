@@ -1,0 +1,24 @@
+# do not include local virtualenvs
+book_store_venv/
+venv/
+.env
+.envrc
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+# node / test / IDE / git
+node_modules/
+.git/
+.github/
+.vscode/
+.idea/
+dist/
+build/
+tests/
+.coverage
+.pytest_cache/
+
+# large binaries / artifacts
+*.sqlite3
+*.db
