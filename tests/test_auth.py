@@ -18,6 +18,22 @@ def test_authentication():
     assert response.status_code == 302
     assert response.headers['Location'].endswith('/books')
 
+def test_authentication_failed():
+    client = app.test_client()
+    connection = DatabaseConnection()
+    connection.connect() 
+    connection.execute("TRUNCATE TABLE users;")
+
+    response = client.post('/sessions', data={
+        "username": "test",
+        "password":
+        "1234"
+    })
+
+    assert response.status_code == 302
+    assert response.headers['Location'].endswith('/sessions/new')    
+
+
 def test_authentication_with_playwright(page: Page):
     client = app.test_client()
     connection = DatabaseConnection()
@@ -32,7 +48,7 @@ def test_authentication_with_playwright(page: Page):
 
     assert page.url == "http://127.0.0.1:5001/books"
 
-def test_failed_authentication(page: Page):
+def test_failed_authentication_with_playwright(page: Page):
     client = app.test_client()
     connection = DatabaseConnection()
     connection.connect() 

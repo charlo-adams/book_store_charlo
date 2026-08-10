@@ -1,3 +1,4 @@
+from app import app
 from playwright.sync_api import Page, expect
 from database_connection import DatabaseConnection
 
@@ -51,3 +52,21 @@ def test_form_interaction(page: Page):
     new_book = books.all_inner_texts()[-1]
 
     assert new_book == "The Chroicles of Geronimo (the cat), by Geronimo"
+
+
+def test_unauthenticated_user_trying_to_write_in_new_book(page: Page):
+    client = app.test_client()
+    connection = DatabaseConnection()
+    connection.connect() 
+    connection.execute("TRUNCATE TABLE users;")
+
+
+    page.goto("http://127.0.0.1:5001/books")
+    page.get_by_placeholder("Title").fill("Death Note")
+    page.get_by_placeholder("Author").fill("Tsugumi")
+    page.get_by_role("button", name="Submit").click()
+    page.wait_for_load_state("networkidle")
+
+    books = page.locator("li")
+
+    assert page.url == "http://127.0.0.1:5001/sessions/new"
