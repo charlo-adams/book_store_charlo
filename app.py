@@ -1,12 +1,16 @@
 from database_connection import DatabaseConnection
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from book_repository import BookRepository
 from book import  Book
 from user_repository import UserRepository
 from user import User
+from authenticated import *
+from login_required import login_required
 
 # instantiate a flask app object
 app = Flask(__name__)
+
+app.secret_key = "some_really_secret_key"
 
 
 # declare a route that listens for a GET request
@@ -30,6 +34,7 @@ def get_team():
     return render_template("team.html", team=team)
 
 
+
 @app.route('/books', methods=['GET'])
 def get_all_books():
     connection = DatabaseConnection()
@@ -40,6 +45,7 @@ def get_all_books():
     return render_template("books.html", books=books)
 
 @app.route('/books', methods=['POST'])
+@login_required
 def create_book():
     connection = DatabaseConnection()
     connection.connect()
@@ -64,8 +70,34 @@ def save_user():
     return redirect("/books")
 
 
+#renders login form html page by "getting" the login form
+@app.route('/sessions/new', methods=['GET'])
+def get_login_form():
+    return render_template("login_form.html")
 
-    
+
+#using HTTP method POST to create data
+@app.route('/sessions', methods=['POST'])
+def verify_login():
+    #connects to database (this holds books but also user information such as username/passwords)
+    connection = DatabaseConnection()
+    connection.connect()
+    #connect ot user repository
+    user_repo = UserRepository(connection)
+    #get the inputted username/password 
+    username = request.form["username"]
+    password = request.form["password"]
+    # using the user repo it finds if the username exsists within the DB
+    user = user_repo.find_by_username(username)
+
+    if user and user.password == password:
+        session["user_id"] = user.id
+        session["username"] = user.username
+        return redirect("/books")
+    else:
+        return redirect("/sessions/new")
+
+
 
 @app.route('/authors', methods=['GET'])
 def authors_list():
