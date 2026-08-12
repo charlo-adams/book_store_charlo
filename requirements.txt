@@ -17,11 +17,11 @@ psycopg==3.3.4
 pyee==13.0.1
 Pygments==2.20.0
 pynput==1.8.2
-pyobjc-core==12.2.2
-pyobjc-framework-ApplicationServices==12.2.2
-pyobjc-framework-Cocoa==12.2.2
-pyobjc-framework-CoreText==12.2.2
-pyobjc-framework-Quartz==12.2.2
+pyobjc-core==12.2.2; sys_platform == "darwin"
+pyobjc-framework-ApplicationServices==12.2.2; sys_platform == "darwin"
+pyobjc-framework-Cocoa==12.2.2; sys_platform == "darwin"
+pyobjc-framework-CoreText==12.2.2; sys_platform == "darwin"
+pyobjc-framework-Quartz==12.2.2; sys_platform == "darwin"
 pytest==9.1.1
 pytest-base-url==2.1.0
 pytest-playwright==0.8.0
