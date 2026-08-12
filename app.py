@@ -34,7 +34,7 @@ def get_team():
     return render_template("team.html", team=team)
 
 
-
+# lists all books added to DB
 @app.route('/books', methods=['GET'])
 def get_all_books():
     connection = DatabaseConnection()
@@ -44,7 +44,26 @@ def get_all_books():
     print(books)
     return render_template("books.html", books=books)
 
-@app.route('/books', methods=['POST'])
+
+
+@app.route('/books/<int:book_id>', methods=['GET'])
+def get_book_by_id(book_id):
+    connection = DatabaseConnection()
+    connection.connect()
+    book_repository = BookRepository(connection)
+    book = book_repository.find(book_id)
+    return render_template("one_book.html", book=book)
+
+
+
+#render add to books form
+@app.route("/add_to_books", methods=['GET'])
+def get_add_book_form():
+    return render_template("add_book.html")
+
+
+# add to list of books in the database
+@app.route('/add_to_books', methods=['POST'])
 @login_required
 def create_book():
     connection = DatabaseConnection()
@@ -55,10 +74,14 @@ def create_book():
     book_repository.create(new_book)
     return redirect("/books")
 
+
+# render signup form
 @app.route('/users/new', methods=['GET'])
 def get_sign_up_form():
     return render_template("signup_form.html")
 
+
+# save user and password to user table in DB
 @app.route('/users', methods=['POST'])
 def save_user():
     connection = DatabaseConnection()

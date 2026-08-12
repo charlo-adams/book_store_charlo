@@ -16,3 +16,10 @@ class BookRepository:
     def create(self, book):
         self._connection.execute('INSERT INTO books (title, author) VALUES (%s, %s)', [book.title, book.author])
         return None
+
+
+    def find(self, book_id):
+        rows = self._connection.execute(
+            'SELECT * from books WHERE id = %s', [book_id])
+        row = rows[0]
+        return Book(row["title"], row["author"], row["id"])

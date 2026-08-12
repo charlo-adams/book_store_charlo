@@ -39,7 +39,7 @@ def test_form_interaction(page: Page):
     page.get_by_placeholder("Password").fill("1234")
     page.get_by_role("button", name="Submit").click()
 
-    page.goto("http://127.0.0.1:5001/books")
+    page.goto("http://127.0.0.1:5001/add_to_books")
     page.get_by_placeholder("Title").fill("The Chroicles of Geronimo (the cat)")
     page.get_by_placeholder("Author").fill("Geronimo")
     page.get_by_role("button", name="Submit").click()
@@ -61,7 +61,7 @@ def test_unauthenticated_user_trying_to_write_in_new_book(page: Page):
     connection.execute("TRUNCATE TABLE users;")
 
 
-    page.goto("http://127.0.0.1:5001/books")
+    page.goto("http://127.0.0.1:5001/add_to_books")
     page.get_by_placeholder("Title").fill("Death Note")
     page.get_by_placeholder("Author").fill("Tsugumi")
     page.get_by_role("button", name="Submit").click()
