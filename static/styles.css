@@ -1,6 +1,16 @@
-body {
-    background-image: linear-gradient(to bottom, rgb(248, 162, 218), rgb(149, 222, 246));
+html, body {
+    min-height: 100%;
+    margin: 0;
 }
+
+body {
+    min-height: 100vh;
+    background-image: url("https://i.pinimg.com/originals/53/d8/3b/53d83b6a60385e07db8531cbcfd3bd5d.gif");
+    background-repeat: no-repeat;
+    background-size: cover;    
+
+}
+
 
 h1 {
     text-align: center;
@@ -10,24 +20,67 @@ h1 {
 }
 
 h2 {
-    color: black;
+    color: rgb(249, 248, 248);
     text-align: center;  
 }
 
 p {
+    color: rgb(249, 248, 248);
     font-size: 20px;
     line-height: 1.6;
     text-align: center;
 }
 
 ul {
+    color: rgb(249, 248, 248);
     text-align: center;
     margin: 0 auto;
 }
 
 li {
+    color: rgb(249, 248, 248);
     margin: 0 auto;
     width: fit-content;
+}
+
+form {
+    color: rgb(249, 248, 248);
+    display: inline-block;
+    align-items: center;
+    margin: 10px;
+    margin-right: 20px;
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    align-items: center;
+    font-family: "Oswald", sans-serif;
+    background-color: #00000000;
+    padding: 0.5em 1.5em;
+    color: white;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    margin: 0 auto;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s, font-size 0.4s ease-in-out;
+}
+
+
+.nav-links a:hover {
+    color: #00bcd4;
+    font-size: 22px;
 }
 
 .cat {
@@ -36,6 +89,12 @@ li {
     left: 0;
 }
 
+.corner{
+
+    bottom: 0;
+    right: 0;
+
+}
 
 .haha {
     display: block;
@@ -44,7 +103,10 @@ li {
     height: 50%;
 }
 
-a.button { 
+.submit-button {
+    display: inline-block;
+    margin: 10px;
+    margin-right: 20px;
     background-color: rgb(245, 85, 205);
     padding: 2px 6px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -52,6 +114,22 @@ a.button {
     border-radius: 5px;
     color: white;
     text-decoration: none;
+}
 
+.button { 
+    display: inline-block;
+    margin: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(245, 85, 205);
+    padding: 2px 6px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    border: 3px outset buttonborder;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
 
+.button:hover {
+    background-color: #4CAF50; 
+    color: white;
 }
